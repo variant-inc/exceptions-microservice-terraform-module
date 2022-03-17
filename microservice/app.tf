@@ -1,24 +1,24 @@
 # Application AWS Role
-resource "aws_iam_role" "truck_in_shop_application_policy" {
+resource "aws_iam_role" "application_policy" {
   name               = var.aws_iam_role_name
   // var.environment is set by scripts/octo/plan.sh & delpoy.sh
   description        = "IAM role for ${var.aws_iam_role_name} in ${var.environment} environment"
-  assume_role_policy = data.aws_iam_policy_document.truck_in_shop_instance_assume_role_policy.json
+  assume_role_policy = data.aws_iam_policy_document.instance_assume_role_policy.json
 
   inline_policy {
     name = var.project_name
-    policy = data.aws_iam_policy_document.truck_in_shop_application_policy_document.json
+    policy = data.aws_iam_policy_document.application_policy_document.json
   }
 }
 
-data "aws_iam_policy_document" "truck_in_shop_application_policy_document" {
+data "aws_iam_policy_document" "application_policy_document" {
   version = var.aws_policy_version
 
   // Allow SNS Access & permissions
   statement {
     effect = "Allow"
     resources = [
-      aws_sns_topic.truck_in_shop_outgoing_exceptions_topic.arn
+      aws_sns_topic.outgoing_exceptions_topic.arn
     ]
     actions = ["sns:Publish"]
   }
@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "truck_in_shop_application_policy_document" {
   statement {
     effect = "Allow"
     resources = [
-      aws_sqs_queue.truck_in_shop_incoming_queue.arn
+      aws_sqs_queue.incoming_entity_queue.arn
     ]
     actions = [
       "sqs:ChangeMessageVisibility",
@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "truck_in_shop_application_policy_document" {
 }
 
 // var.oidc_provider is set by scripts/octo/plan.sh & delpoy.sh
-data "aws_iam_policy_document" "truck_in_shop_instance_assume_role_policy" {
+data "aws_iam_policy_document" "instance_assume_role_policy" {
   version = var.aws_policy_version
   statement {
     effect = "Allow"
