@@ -125,6 +125,7 @@ resource "helm_release" "ere_microservice_helm_chart" {
   }
 
   #egress
+  # LaunchDarkly I/O
    set {
     name  = "vsd.istio.egress[0].name"
     value = "launchdarkly-apis"
