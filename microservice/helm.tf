@@ -1,6 +1,5 @@
 // var.deployable is set in scripts/octo/plan.sh & delpoy.sh
-// CHANGE_THIS "ticket_type_microservice_prototype" needs to be unique.
-resource "helm_release" "ticket_type_microservice_prototype" {
+resource "helm_release" "ere_microservice_helm_chart" {
   chart           = "../../helm/${var.deployable}"
   name            = var.helm_chart_name
   namespace       = var.target_namespace
