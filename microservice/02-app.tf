@@ -38,7 +38,7 @@ data "aws_iam_policy_document" "application_policy_document" {
   statement {
     effect = "Allow"
     resources = [
-      aws_sqs_queue.incoming_entity_queue.arn
+      aws_sqs_queue.incoming_sqs.arn
     ]
     actions = [
       "sqs:ChangeMessageVisibility",

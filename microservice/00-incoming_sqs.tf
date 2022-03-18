@@ -11,7 +11,7 @@ resource "aws_sqs_queue" "incoming_sqs_deadletter" {
 resource "aws_sqs_queue" "incoming_sqs" {
     name              = var.incoming_queue_name
     kms_master_key_id = data.aws_kms_alias.sns_key.id
-    message_retention_seconds   = var.incoming_queue_retention_seconds
+    message_retention_seconds   = var.entity_queue_retention_seconds
 
     redrive_policy = jsonencode({
         deadLetterTargetArn = aws_sqs_queue.incoming_sqs_deadletter.arn

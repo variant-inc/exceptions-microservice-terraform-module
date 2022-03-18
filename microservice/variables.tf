@@ -22,6 +22,10 @@ variable "oidc_provider" {
 }
 ///
 
+variable "max_receive_count" {
+  type = number
+}
+
 variable "helm_chart_name" {
   type = string
 }
