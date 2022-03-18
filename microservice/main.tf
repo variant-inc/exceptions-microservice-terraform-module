@@ -1,5 +1,4 @@
 terraform {
-#   backend "s3" {}
   required_providers {
     aws = {
       version = "~> 3.49.0"
@@ -19,10 +18,6 @@ provider "aws" {
     tags = module.tags.tags
   }
 }
-
-# provider "helm" {}
-
-provider "kubernetes" {}
 
 data "aws_caller_identity" "current" {}
 
