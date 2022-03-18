@@ -1,5 +1,5 @@
 terraform {
-  backend "s3" {}
+#   backend "s3" {}
   required_providers {
     aws = {
       version = "~> 3.49.0"
@@ -20,7 +20,7 @@ provider "aws" {
   }
 }
 
-provider "helm" {}
+# provider "helm" {}
 
 provider "kubernetes" {}
 
