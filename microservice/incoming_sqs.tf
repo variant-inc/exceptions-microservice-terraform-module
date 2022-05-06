@@ -49,6 +49,6 @@ resource "aws_sns_topic_subscription" "solutions_orchestrator_subscription" {
   endpoint             = aws_sqs_queue.incoming_sqs.arn
   protocol             = "sqs"
   topic_arn            = data.aws_sns_topic.incoming_solutions_orchestrator_data.arn
-  raw_message_delivery = true
+  raw_message_delivery = false
   depends_on           = [aws_sqs_queue_policy.incoming_sqs_queue_policy_resource]
 }
