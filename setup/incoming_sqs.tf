@@ -46,6 +46,6 @@ resource "aws_sns_topic_subscription" "ticketing_handler_subscription" {
   endpoint             = aws_sqs_queue.temp_incoming_queue.arn
   protocol             = "sqs"
   topic_arn            = aws_sns_topic.incoming_topic_resource.arn
-  raw_message_delivery = true
+  raw_message_delivery = false
   depends_on           = [aws_sqs_queue_policy.temp_incoming_queue_policy]
 }
